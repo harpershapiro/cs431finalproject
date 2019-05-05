@@ -8,7 +8,7 @@ Created on Sun Apr 28 15:26:30 2019
 
 import pandas as pd # Import the library and give a short alias: pd
 house = pd.read_csv("data/kc_house_data.csv")
-print(house.head(5))
+print(house.head(10))
 prices = house['price']
 avg_price = prices.mean()
 print(f"Average price is ${avg_price:.0f}")
