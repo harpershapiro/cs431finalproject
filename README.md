@@ -13,7 +13,8 @@ use random forest for analysis
 
 # Data analysis:
   price points:
-    11,041 (51%) between $0-$456250
-    7980 between $456250-$837500
-  //find mean, mode, deviations, etc
-  //most indicative of price (using price)
+
+    11,041 houses (51%) between $0 and $456250
+    7980 houses between $456250 and $837500
+
+find mean, mode, deviations, etc most indicative of price (using price)
