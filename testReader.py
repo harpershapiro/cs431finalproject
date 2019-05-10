@@ -23,7 +23,7 @@ prices = house['price']
 avg_price = prices.mean()
 print(f"Average price is ${avg_price:.0f}")
 
-X, y = house[['bedrooms','bathrooms', 'zipcode', 'sqft_living', 'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement', 'yr_built', 'yr_renovated', 'sqft_living15', 'sqft_lot15']], house['price']
+X, y = house[['bedrooms','bathrooms', 'zipcode', 'lat', 'long', 'sqft_living', 'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement', 'yr_built', 'yr_renovated', 'sqft_living15', 'sqft_lot15']], house['price']
  # 20% of data goes into test set, 80% into training set 
  
 byzipcode = house.groupby(['zipcode']).mean()
@@ -41,7 +41,7 @@ byzipcode.plot.line('zipcode','price', style='-o')
 plt.show()
 
  
-numRuns = 10
+numRuns = 4
 sum = 0
 for i in range(numRuns):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
@@ -51,7 +51,9 @@ for i in range(numRuns):
     validation_e = mean_absolute_error(y_valid, rf.predict(X_valid))
     sum += validation_e
 
-I = importances(rf, X_valid, y_valid)
+#I = importances(rf, X_valid, y_valid)
+#plot_importances(I, color='#4575b4', vscale=1.8)
+I = importances(rf, X_valid, y_valid, features=['bedrooms','bathrooms',['lat','long'], 'sqft_living', 'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement', 'yr_built', 'yr_renovated', 'sqft_living15', 'sqft_lot15'])
 plot_importances(I, color='#4575b4', vscale=1.8)
 sum = sum/numRuns
 print(f"${sum:.0f} average error; {sum*100.0/y.mean():.2f}% error")
