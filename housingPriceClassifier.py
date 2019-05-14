@@ -6,6 +6,8 @@ Created on Sun Apr 28 15:26:30 2019
 @author: katrinahoefflinger
 """
 
+#dummy
+
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, mean_squared_error
@@ -67,6 +69,11 @@ bybedrooms = house.groupby(['bedrooms']).mean()
 bybedrooms = bybedrooms.reset_index()
 bybath = house.groupby(['bathrooms']).mean()
 bybath = bybath.reset_index()
+bylong = house.groupby(['long']).mean()
+bylong = bylong.reset_index()
+bylat = house.groupby(['lat']).mean()
+bylat = bylat.reset_index()
+
 
 bybath.plot.line('bathrooms','price', style='-o')
 plt.show()
@@ -74,6 +81,11 @@ bybedrooms.plot.line('bedrooms','price', style='-o')
 plt.show()
 bysqft_living.plot.line('sqft_living','price', style='-o')
 plt.show()
+bylong.plot.line('long','price',style="-o")
+plt.show()
+bylat.plot.line('lat','price',style="-o")
+plt.show()
+
 
 #TRAINING THE CLASSIFIER
 #numRuns = 4
@@ -111,6 +123,5 @@ print("Test results for the classifier...")
 test_I = importances(rf, X_test, y_test, features=feature_list_coordGroup)
 plot_importances(test_I, color='#4575b4',vscale=1.8)
 test_mae = mean_absolute_error(y_test,rf.predict(X_test))
-test_mse = mean_squared_error(y_test, rf.predict(X_test))
 print(f"${test_mae:.0f} average mean absolute error; {test_mae*100.0/y.mean():.2f}% error" )
  
