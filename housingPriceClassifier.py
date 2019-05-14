@@ -6,7 +6,6 @@ Created on Sun Apr 28 15:26:30 2019
 @author: katrinahoefflinger
 """
 
-#dummy
 
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
